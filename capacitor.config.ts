@@ -1,1 +1,9 @@
-aW1wb3J0IHR5cGUgeyBDYXBhY2l0b3JDb25maWcgfSBmcm9tICdAY2FwYWNpdG9yL2NsaSc7Cgpjb25zdCBjb25maWc6IENhcGFjaXRvckNvbmZpZyA9IHsKICBhcHBJZDogJ2NvbS5tdXNpY2Z5LmFwcCcsCiAgYXBwTmFtZTogJ011c2ljZnknLAogIHdlYkRpcjogJy4nLAp9OwoKZXhwb3J0IGRlZmF1bHQgY29uZmlnOwo=
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.musicfy.app',
+  appName: 'Musicfy',
+  webDir: '.',
+};
+
+export default config;
