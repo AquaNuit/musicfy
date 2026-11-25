@@ -1,1 +1,73 @@
-IyBNdXNpY2Z5IPCfjrUKCkEgZnJlZSwgb3Blbi1zb3VyY2UgKip3ZWIgbXVzaWMgcGxheWVyKiogd2l0aCBhIGhlYWRsaW5lICoqbG9zc2xlc3MgYXVkaW8qKiBmZWF0dXJlIOKAlAptb2RlbGxlZCBvbiB0aGUgZGVzaWduIG9mIFtPcGVuVHVuZV0oaHR0cHM6Ly9naXRodWIuY29tL2p1c3RzaGl2di9PcGVudHVuZSksIHRoZQpvcGVuLXNvdXJjZSBBbmRyb2lkIG11c2ljIGFwcC4gTXVzaWNmeSBpcyBhbiAqaW5kZXBlbmRlbnQgcmVpbXBsZW1lbnRhdGlvbiogdGhhdCBydW5zCmFueXdoZXJlIGEgYnJvd3NlciBydW5zOiBvbiB0aGUgd2ViLCBpbnN0YWxsZWQgYXMgYSBQV0EsIG9yIHdyYXBwZWQgYXMgYW4gQW5kcm9pZCBBUEsuCgpObyBidWlsZCBzdGVwLCBubyBBUEkga2V5cywgbm8gYWNjb3VudHMsIG5vIHRyYWNraW5nLiBQbGFpbiBIVE1MICsgQ1NTICsgSmF2YVNjcmlwdC4KCiMjIEZlYXR1cmVzCgotICoqSG9tZSoqIOKAlCBjaGFydCBzaGVsdmVzIGZyb20gdGhlIGlUdW5lcyBjYXRhbG9nLgotICoqU2VhcmNoKiog4oCUIHRoZSBmdWxsIGlUdW5lcyBjYXRhbG9nIChwbGF5cyBhcyAzMC1zZWNvbmQgcHJldmlld3MsIGNsZWFybHkgbGFiZWxsZWQgYFBSRVZJRVdgKS4KLSAqKkxpYnJhcnkqKiDigJQgbGlrZWQgc29uZ3MgYW5kIHBsYXlsaXN0cywgc2F2ZWQgaW4geW91ciBicm93c2VyIChgbG9jYWxTdG9yYWdlYCkuCi0gKipGdWxsIHBsYXllcioqIOKAlCBwbGF5L3BhdXNlLCBzZWVrLCBxdWV1ZSB3aXRoIG5leHQvcHJldmlvdXMsIHNodWZmbGUsIHJlcGVhdAogIChvZmYgLyBhbGwgLyBvbmUpLCB2b2x1bWUsIGFuZCBsb2NrLXNjcmVlbiBjb250cm9scyB2aWEgdGhlIE1lZGlhIFNlc3Npb24gQVBJLgotICoqU3luY2VkIGx5cmljcyoqIOKAlCB3b3JkLXRpbWVkIGx5cmljcyBmcm9tIFtMUkNMSUJdKGh0dHBzOi8vbHJjbGliLm5ldCkgdGhhdCBoaWdobGlnaHQKICBhcyB0aGUgc29uZyBwbGF5czsgdGFwIGEgbGluZSB0byBqdW1wIHRvIGl0LgotICoqVGhlbWVzKiog4oCUIGRhcmssIHB1cmUgYmxhY2sgYW5kIGxpZ2h0OyBxdWFsaXR5IGFuZCB0aGVtZSBwcmVmZXJlbmNlcyBwZXJzaXN0LgoKIyMg8J+OpyBUaGUgbG9zc2xlc3MgZmVhdHVyZQoKLSAqKkxvc3NsZXNzIHNoZWxmKiog4oCUIGZ1bGwtbGVuZ3RoICoqRkxBQyoqIHJlY29yZGluZ3Mgc3RyZWFtZWQgZnJvbSB0aGUKICBbSW50ZXJuZXQgQXJjaGl2ZV0oaHR0cHM6Ly9hcmNoaXZlLm9yZykgKHB1YmxpYy1kb21haW4gLyBvcGVubHkgbGljZW5zZWQgY29sbGVjdGlvbnMsCiAgZS5nLiBjbGFzc2ljIGphenopLCBiYWRnZWQgYExPU1NMRVNTYCBpbiB0aGUgVUkuCi0gKipZb3VyIG93biBmaWxlcyoqIOKAlCBhZGQgeW91ciBvd24gKipGTEFDIC8gV0FWIC8gQUxBQyoqIGZpbGVzIGluIHRoZSBMaWJyYXJ5IHRhYi4KICBUaGV5IHBsYXkgc3RyYWlnaHQgZnJvbSB5b3VyIGRldmljZSB2aWEgYFVSTC5jcmVhdGVPYmplY3RVUkxgIOKAlCBuZXZlciB1cGxvYWRlZCwKICBuZXZlciByZS1lbmNvZGVkIOKAlCB3aXRoIHRoZSByZWFsIGZvcm1hdCBhbmQgYW4gZXN0aW1hdGVkIGJpdHJhdGUgc2hvd24gaW4gdGhlIHBsYXllci4KLSAqKkF1ZGlvLXF1YWxpdHkgc2VsZWN0b3IqKiAoU2V0dGluZ3MpIOKAlCAqRGF0YSBzYXZlciAvIE5vcm1hbCAvIExvc3NsZXNzIC8KICBIaS1SZXMgTG9zc2xlc3MqLCBwZXJzaXN0ZWQgYWNyb3NzIHZpc2l0cywgc2hvd24gYXMgYSBjaGlwIGluIHRoZSBoZWFkZXIuCi0gKipMaXZlIGZvcm1hdCByZWFkb3V0Kiog4oCUIHRoZSBwbGF5ZXIgc2hvd3MgdGhlIGFjdHVhbCBmb3JtYXQgKGUuZy4KICBgRkxBQyDCtyBMb3NzbGVzcyDCtyB+OTEwIGticHNgKSB3aGlsZSBhIGxvc3NsZXNzIHRyYWNrIHBsYXlzLgoKPiAqKkRlY29kZXIgbm90ZToqKiBGTEFDIHBsYXliYWNrIHVzZXMgeW91ciBicm93c2VyJ3MgKm5hdGl2ZSogZGVjb2Rlci4gSXQgd29ya3MgaW4KPiBDaHJvbWUsIEVkZ2UgYW5kIEZpcmVmb3ggKGFuZCBpbiB0aGUgQW5kcm9pZCBhcHAsIHdob3NlIFdlYlZpZXcgaXMgQ2hyb21pdW0tYmFzZWQpLgo+ICoqU2FmYXJpIG1heSBub3QgZGVjb2RlIEZMQUMgaW4tYnJvd3Nlci4qKgoKIyMgUnVuIGl0IG9uIHRoZSB3ZWIKCkFueSBzdGF0aWMgaG9zdCB3b3JrcyDigJQgdGhlcmUgaXMgbm90aGluZyB0byBidWlsZC4KCi0gKipHaXRIdWIgUGFnZXM6KiogcHVzaCB0aGlzIHJlcG8sIHRoZW4gaW4gKipTZXR0aW5ncyDihpIgUGFnZXMqKiBjaG9vc2UKICAqRGVwbG95IGZyb20gYSBicmFuY2gg4oaSIG1haW4g4oaSIC8gKHJvb3QpKi4gRG9uZS4KLSAqKkxvY2FsbHk6KiogYG5wbSBydW4gc2VydmVgIChvciBhbnkgc3RhdGljIHNlcnZlciwgZS5nLiBgcHl0aG9uMyAtbSBodHRwLnNlcnZlcmApLgotIE9yIGhvc3QgdGhlIGZvbGRlciBvbiBOZXRsaWZ5LCBWZXJjZWwsIENsb3VkZmxhcmUgUGFnZXMsIGV0Yy4KCiMjIEluc3RhbGwgYXMgYSBQV0EKCk9wZW4gdGhlIGhvc3RlZCBhcHAgaW4gQ2hyb21lL0VkZ2UgKEFuZHJvaWQgb3IgZGVza3RvcCkgYW5kIGNob29zZQoqKuKAnEluc3RhbGwgYXBw4oCdIC8g4oCcQWRkIHRvIEhvbWUgc2NyZWVu4oCdKiog4oCUIE11c2ljZnkgaW5zdGFsbHMgd2l0aCBpdHMgb3duIGljb24gYW5kCndvcmtzIG9mZmxpbmUgZm9yIHRoZSBhcHAgc2hlbGwgKGNhdGFsb2cgYW5kIHN0cmVhbXMgc3RpbGwgbmVlZCB0aGUgaW50ZXJuZXQpLgoKIyMgQnVpbGQgdGhlIEFuZHJvaWQgQVBLCgpTZWUgKipbQU5EUk9JRC5tZF0oQU5EUk9JRC5tZCkqKi4gSW4gc2hvcnQ6IHRoZSBpbmNsdWRlZCBHaXRIdWIgQWN0aW9ucyB3b3JrZmxvdwooKipBY3Rpb25zIOKGkiBCdWlsZCBBbmRyb2lkIEFQSyoqLCBvciBwdWJsaXNoIGEgUmVsZWFzZSkgYnVpbGRzIGEgZGVidWcgQVBLIHlvdSBjYW4KZG93bmxvYWQgYW5kIGluc3RhbGwgb24gYW55IEFuZHJvaWQgcGhvbmU7IGxvY2FsbHkgeW91IGNhbiBkbyB0aGUgc2FtZSB3aXRoCkNhcGFjaXRvciAoYG5weCBjYXAgYWRkIGFuZHJvaWRgLCB0aGVuIGJ1aWxkIGluIEFuZHJvaWQgU3R1ZGlvKS4KCiMjIEhvbmVzdCBub3RlcwoKLSBDYXRhbG9nIHNvbmdzIGFyZSAqKjMwLXNlY29uZCBwcmV2aWV3cyoqIHNlcnZlZCBieSB0aGUgaVR1bmVzIFNlYXJjaCBBUEkg4oCUIHRoYXQgaXMKICBhbGwgQXBwbGUgbWFrZXMgYXZhaWxhYmxlIHdpdGhvdXQgYSBwYWlkIHNlcnZpY2UuICoqRnVsbC1sZW5ndGggcGxheWJhY2sqKiBpcwogIGF2YWlsYWJsZSBmb3IgdGhlIExvc3NsZXNzIHNoZWxmIChJbnRlcm5ldCBBcmNoaXZlKSBhbmQgZm9yIHlvdXIgb3duIGZpbGVzLgotIE11c2ljZnkgaXMgKipub3QgYWZmaWxpYXRlZCB3aXRoKiogT3BlblR1bmUsIFlvdVR1YmUsIEdvb2dsZSwgQXBwbGUgb3IgdGhlCiAgSW50ZXJuZXQgQXJjaGl2ZS4gT3BlblR1bmUgaXMgR1BMLTMuMDsgTXVzaWNmeSBpcyBhbiBpbmRlcGVuZGVudCByZWltcGxlbWVudGF0aW9uCiAgKmluc3BpcmVkIGJ5IGl0cyBkZXNpZ24qIGFuZCBzaGFyZXMgbm8gY29kZSB3aXRoIGl0LgotIEFydHdvcmsgYW5kIHByZXZpZXdzIGJlbG9uZyB0byB0aGVpciByZXNwZWN0aXZlIG93bmVycy4gTG9zc2xlc3Mtc2hlbGYgcmVjb3JkaW5ncwogIGFyZSBwdWJsaWMtZG9tYWluIG9yIG9wZW5seSBsaWNlbnNlZCBtYXRlcmlhbCBob3N0ZWQgYnkgdGhlIEludGVybmV0IEFyY2hpdmUuCgojIyBMaWNlbnNlCgpbTUlUXShMSUNFTlNFKSDigJQgZG8gd2hhdCB5b3UgbGlrZSwga2VlcCB0aGUgbm90aWNlLgo=
+# Musicfy 🎵
+
+A free, open-source **web music player** with a headline **lossless audio** feature —
+modelled on the design of [OpenTune](https://github.com/justshivv/Opentune), the
+open-source Android music app. Musicfy is an *independent reimplementation* that runs
+anywhere a browser runs: on the web, installed as a PWA, or wrapped as an Android APK.
+
+No build step, no API keys, no accounts, no tracking. Plain HTML + CSS + JavaScript.
+
+## Features
+
+- **Home** — chart shelves from the iTunes catalog.
+- **Search** — the full iTunes catalog (plays as 30-second previews, clearly labelled `PREVIEW`).
+- **Library** — liked songs and playlists, saved in your browser (`localStorage`).
+- **Full player** — play/pause, seek, queue with next/previous, shuffle, repeat
+  (off / all / one), volume, and lock-screen controls via the Media Session API.
+- **Synced lyrics** — word-timed lyrics from [LRCLIB](https://lrclib.net) that highlight
+  as the song plays; tap a line to jump to it.
+- **Themes** — dark, pure black and light; quality and theme preferences persist.
+
+## 🎧 The lossless feature
+
+- **Lossless shelf** — full-length **FLAC** recordings streamed from the
+  [Internet Archive](https://archive.org) (public-domain / openly licensed collections,
+  e.g. classic jazz), badged `LOSSLESS` in the UI.
+- **Your own files** — add your own **FLAC / WAV / ALAC** files in the Library tab.
+  They play straight from your device via `URL.createObjectURL` — never uploaded,
+  never re-encoded — with the real format and an estimated bitrate shown in the player.
+- **Audio-quality selector** (Settings) — *Data saver / Normal / Lossless /
+  Hi-Res Lossless*, persisted across visits, shown as a chip in the header.
+- **Live format readout** — the player shows the actual format (e.g.
+  `FLAC · Lossless · ~910 kbps`) while a lossless track plays.
+
+> **Decoder note:** FLAC playback uses your browser's *native* decoder. It works in
+> Chrome, Edge and Firefox (and in the Android app, whose WebView is Chromium-based).
+> **Safari may not decode FLAC in-browser.**
+
+## Run it on the web
+
+Any static host works — there is nothing to build.
+
+- **GitHub Pages:** push this repo, then in **Settings → Pages** choose
+  *Deploy from a branch → main → / (root)*. Done.
+- **Locally:** `npm run serve` (or any static server, e.g. `python3 -m http.server`).
+- Or host the folder on Netlify, Vercel, Cloudflare Pages, etc.
+
+## Install as a PWA
+
+Open the hosted app in Chrome/Edge (Android or desktop) and choose
+**“Install app” / “Add to Home screen”** — Musicfy installs with its own icon and
+works offline for the app shell (catalog and streams still need the internet).
+
+## Build the Android APK
+
+See **[ANDROID.md](ANDROID.md)**. In short: the included GitHub Actions workflow
+(**Actions → Build Android APK**, or publish a Release) builds a debug APK you can
+download and install on any Android phone; locally you can do the same with
+Capacitor (`npx cap add android`, then build in Android Studio).
+
+## Honest notes
+
+- Catalog songs are **30-second previews** served by the iTunes Search API — that is
+  all Apple makes available without a paid service. **Full-length playback** is
+  available for the Lossless shelf (Internet Archive) and for your own files.
+- Musicfy is **not affiliated with** OpenTune, YouTube, Google, Apple or the
+  Internet Archive. OpenTune is GPL-3.0; Musicfy is an independent reimplementation
+  *inspired by its design* and shares no code with it.
+- Artwork and previews belong to their respective owners. Lossless-shelf recordings
+  are public-domain or openly licensed material hosted by the Internet Archive.
+
+## License
+
+[MIT](LICENSE) — do what you like, keep the notice.
