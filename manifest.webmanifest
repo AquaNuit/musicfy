@@ -1,1 +1,26 @@
-ewogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwZDBkMTIiLAogICJkZXNjcmlwdGlvbiI6ICJGcmVlIHdlYiBtdXNpYyBwbGF5ZXIgd2l0aCBsb3NzbGVzcyBGTEFDIHBsYXliYWNrLCBzeW5jZWQgbHlyaWNzIGFuZCB5b3VyIG93biBsaWJyYXJ5LiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImljb25zL2ljb24uc3ZnIiwKICAgICAgInNpemVzIjogImFueSIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkiCiAgICB9LAogICAgewogICAgICAic3JjIjogImljb25zL2ljb24uc3ZnIiwKICAgICAgInNpemVzIjogImFueSIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJtYXNrYWJsZSIKICAgIH0KICBdLAogICJpZCI6ICIuIiwKICAibmFtZSI6ICJNdXNpY2Z5IiwKICAib3JpZW50YXRpb24iOiAicG9ydHJhaXQiLAogICJzY29wZSI6ICIuIiwKICAic2hvcnRfbmFtZSI6ICJNdXNpY2Z5IiwKICAic3RhcnRfdXJsIjogIi4iLAogICJ0aGVtZV9jb2xvciI6ICIjMGQwZDEyIgp9
+{
+  "background_color": "#0d0d12",
+  "description": "Free web music player with lossless FLAC playback, synced lyrics and your own library.",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "id": ".",
+  "name": "Musicfy",
+  "orientation": "portrait",
+  "scope": ".",
+  "short_name": "Musicfy",
+  "start_url": ".",
+  "theme_color": "#0d0d12"
+}
