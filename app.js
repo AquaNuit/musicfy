@@ -1,5 +1,7 @@
 /* Musicfy — free web music player inspired by OpenTune.
-   Catalog: iTunes Search API (30s previews). Lossless: Internet Archive FLAC + your own files.
+   Catalog: full-length songs from the Internet Archive (openly licensed / public domain),
+   plus iTunes Search API 30s previews for chart hits that have no open full version.
+   Lossless: Internet Archive FLAC + your own files.
    Lyrics: LRCLIB. No API keys, no tracking, library stays in your browser (localStorage). */
 "use strict";
 
@@ -31,12 +33,13 @@ function itunesTrack(r) {
   };
 }
 function archiveTrack(id, title, artist, file, size) {
+  const isFlac = /\.flac$/i.test(file);
   return {
     id: "ia:" + id + "/" + file, source: "archive", title, artist: artist || "Internet Archive",
     album: id, art: "https://archive.org/services/img/" + id,
     url: "https://archive.org/download/" + encodeURIComponent(id) + "/" + encodeURIComponent(file),
-    duration: 0, preview: false, lossless: true, size: size || 0,
-    formatLabel: "FLAC · Lossless",
+    duration: 0, preview: false, full: true, lossless: isFlac, size: size || 0,
+    formatLabel: isFlac ? "FLAC · Lossless" : "MP3 · Full song",
   };
 }
 function localTrack(file) {
@@ -54,6 +57,7 @@ function localTrack(file) {
 function badge(t) {
   if (t.lossless) return '<span class="badge">LOSSLESS</span>';
   if (t.preview) return '<span class="badge preview">PREVIEW</span>';
+  if (t.full) return '<span class="badge">FULL</span>';
   return "";
 }
 function cardHTML(t) {
@@ -82,18 +86,60 @@ document.addEventListener("click", (e) => {
   }
 });
 
-/* ---------- iTunes catalog ---------- */
+/* ---------- iTunes catalog (30s previews only — Apple offers nothing longer) ---------- */
 async function itunesSearch(term, limit = 12) {
   const u = `https://itunes.apple.com/search?term=${encodeURIComponent(term)}&media=music&entity=song&limit=${limit}`;
   const r = await fetch(u); const j = await r.json();
   return (j.results || []).filter((x) => x.previewUrl).map(itunesTrack);
 }
+
+/* ---------- Internet Archive: full-length songs ---------- */
+function parseLen(v) {
+  if (v == null) return 0;
+  if (typeof v === "number") return v;
+  const s = String(v).trim();
+  if (/^\d+(\.\d+)?$/.test(s)) return parseFloat(s);
+  const parts = s.split(":").map(Number);
+  if (parts.some(isNaN)) return 0;
+  return parts.reduce((a, n) => a * 60 + n, 0);
+}
+function pickAudioFiles(meta) {
+  const files = (meta.files || []).filter((f) => {
+    if (!/\.(mp3|flac|ogg|m4a)$/i.test(f.name)) return false;
+    if (f.size && +f.size < 300000) return false;      // skip tiny clips
+    const len = parseLen(f.length);
+    if (len && (len < 45 || len > 1500)) return false; // skip previews and multi-hour jukeboxes
+    return true;
+  });
+  const rank = (f) => (/\.flac$/i.test(f.name) ? 0 : /\.mp3$/i.test(f.name) ? 1 : 2);
+  return files.sort((a, b) => rank(a) - rank(b));
+}
+async function archiveSearchTracks(term, limit = 12, perItem = 2) {
+  const clean = String(term).replace(/[()"]/g, " ").trim();
+  const q = `mediatype:audio AND (${clean})`;
+  const u = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(q)}&fl[]=identifier&fl[]=title&fl[]=creator&rows=20&sort[]=${encodeURIComponent("downloads desc")}&output=json`;
+  const j = await (await fetch(u)).json();
+  const docs = (j.response && j.response.docs) || [];
+  const per = await Promise.all(docs.slice(0, 14).map(async (d) => {
+    try {
+      const meta = await (await fetch(`https://archive.org/metadata/${encodeURIComponent(d.identifier)}`)).json();
+      const artist = d.creator || (meta.metadata && meta.metadata.creator) || "Internet Archive";
+      return pickAudioFiles(meta).slice(0, perItem).map((f) => {
+        const t = archiveTrack(d.identifier, (f.title || d.title || f.name).replace(/\.(mp3|flac|ogg|m4a)$/i, ""), artist, f.name, +f.size || 0);
+        t.duration = parseLen(f.length);
+        return t;
+      });
+    } catch { return []; }
+  }));
+  const seen = new Set();
+  return per.flat().filter((t) => { const k = keyOf(t); if (seen.has(k)) return false; seen.add(k); return true; }).slice(0, limit);
+}
 async function loadHome() {
   const shelves = [
-    ["Top pop picks", "pop hits"],
-    ["Bollywood favourites", "arijit singh"],
-    ["Chill & acoustic", "acoustic chill"],
-    ["Rock classics", "classic rock"],
+    ["Full songs — Bollywood & Hindi", "bollywood hindi songs"],
+    ["Full songs — live concerts", "live concert recording"],
+    ["Full songs — jazz & blues", "jazz blues"],
+    ["Full songs — rock & pop", "rock pop music"],
   ];
   const host = $("#home-shelves"); host.innerHTML = "";
   for (const [title, term] of shelves) {
@@ -101,9 +147,10 @@ async function loadHome() {
     sec.innerHTML = `<h2>${title}</h2><div class="shelf"><p class="sub">Loading…</p></div>`;
     host.appendChild(sec);
     try {
-      const tracks = await itunesSearch(term, 12);
+      let tracks = await archiveSearchTracks(term, 12);
+      if (!tracks.length) tracks = await itunesSearch(term, 12);
       sec.querySelector(".shelf").innerHTML = tracks.map(cardHTML).join("") || '<p class="sub">Nothing found.</p>';
-      sec.querySelectorAll(".card").forEach((c, i) => c.addEventListener("click", () => playQueue(tracks, i)));
+      sec.querySelectorAll(".card").forEach((c, i) => c.addEventListener("click", (e) => { e.stopPropagation(); playQueue(tracks, i); }));
     } catch { sec.querySelector(".shelf").innerHTML = '<p class="sub">Could not load (offline?).</p>'; }
   }
 }
@@ -137,12 +184,22 @@ async function loadLossless() {
 $("#search-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const term = $("#search-input").value.trim(); if (!term) return;
-  const host = $("#search-results"); host.innerHTML = '<p class="sub">Searching…</p>';
+  const host = $("#search-results"); host.innerHTML = '<p class="sub">Searching full-length songs…</p>';
   try {
-    const tracks = await itunesSearch(term, 30);
-    host.innerHTML = tracks.length ? tracks.map(rowHTML).join("") : '<p class="sub">No results.</p>';
-    host.querySelectorAll(".row").forEach((r, i) => r.addEventListener("click", (ev) => {
-      if (!ev.target.closest("[data-like]")) playQueue(tracks, i);
+    const [full, previews] = await Promise.all([
+      archiveSearchTracks(term, 24, 3).catch(() => []),
+      itunesSearch(term, 20).catch(() => []),
+    ]);
+    let html = "";
+    if (full.length) html += "<h2>Full-length songs</h2>" + full.map(rowHTML).join("");
+    if (previews.length) html += '<h2>30-second previews</h2><p class="sub">These chart hits are only available as short previews.</p>' + previews.map(rowHTML).join("");
+    host.innerHTML = html || '<p class="sub">No results.</p>';
+    const all = [...full, ...previews];
+    host.querySelectorAll(".row").forEach((r) => r.addEventListener("click", (ev) => {
+      if (ev.target.closest("[data-like]")) return;
+      ev.stopPropagation();
+      const t = JSON.parse(decodeURIComponent(r.dataset.row));
+      playQueue(all, Math.max(0, all.findIndex((x) => keyOf(x) === keyOf(t))));
     }));
   } catch { host.innerHTML = '<p class="sub">Search failed (offline?).</p>'; }
 });

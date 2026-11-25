@@ -1,6 +1,6 @@
 /* Musicfy service worker — caches the app shell for offline use.
    API calls (iTunes, archive.org, LRCLIB) and audio streams always go to the network. */
-const CACHE = "musicfy-shell-v1";
+const CACHE = "musicfy-shell-v2";
 const SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest",
   "./icons/icon.svg"];
 
