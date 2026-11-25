@@ -1,1 +1,25 @@
-LyogTXVzaWNmeSBzZXJ2aWNlIHdvcmtlciDigJQgY2FjaGVzIHRoZSBhcHAgc2hlbGwgZm9yIG9mZmxpbmUgdXNlLgogICBBUEkgY2FsbHMgKGlUdW5lcywgYXJjaGl2ZS5vcmcsIExSQ0xJQikgYW5kIGF1ZGlvIHN0cmVhbXMgYWx3YXlzIGdvIHRvIHRoZSBuZXR3b3JrLiAqLwpjb25zdCBDQUNIRSA9ICJtdXNpY2Z5LXNoZWxsLXYxIjsKY29uc3QgU0hFTEwgPSBbIi4vIiwgIi4vaW5kZXguaHRtbCIsICIuL3N0eWxlcy5jc3MiLCAiLi9hcHAuanMiLCAiLi9tYW5pZmVzdC53ZWJtYW5pZmVzdCIsCiAgIi4vaWNvbnMvaWNvbi5zdmciXTsKCnNlbGYuYWRkRXZlbnRMaXN0ZW5lcigiaW5zdGFsbCIsIChlKSA9PiB7CiAgZS53YWl0VW50aWwoY2FjaGVzLm9wZW4oQ0FDSEUpLnRoZW4oKGMpID0+IGMuYWRkQWxsKFNIRUxMKSkudGhlbigoKSA9PiBzZWxmLnNraXBXYWl0aW5nKCkpKTsKfSk7CnNlbGYuYWRkRXZlbnRMaXN0ZW5lcigiYWN0aXZhdGUiLCAoZSkgPT4gewogIGUud2FpdFVudGlsKGNhY2hlcy5rZXlzKCkudGhlbigoa2V5cykgPT4KICAgIFByb21pc2UuYWxsKGtleXMuZmlsdGVyKChrKSA9PiBrICE9PSBDQUNIRSkubWFwKChrKSA9PiBjYWNoZXMuZGVsZXRlKGspKSkpLnRoZW4oKCkgPT4gc2VsZi5jbGllbnRzLmNsYWltKCkpKTsKfSk7CnNlbGYuYWRkRXZlbnRMaXN0ZW5lcigiZmV0Y2giLCAoZSkgPT4gewogIGNvbnN0IHVybCA9IG5ldyBVUkwoZS5yZXF1ZXN0LnVybCk7CiAgaWYgKGUucmVxdWVzdC5tZXRob2QgIT09ICJHRVQiKSByZXR1cm47CiAgLy8gQXBwIHNoZWxsOiBjYWNoZS1maXJzdC4gRXZlcnl0aGluZyBlbHNlIChBUElzLCBhcnR3b3JrLCBhdWRpbyk6IG5ldHdvcmssIG5vIGNhY2hpbmcuCiAgaWYgKHVybC5vcmlnaW4gPT09IGxvY2F0aW9uLm9yaWdpbikgewogICAgZS5yZXNwb25kV2l0aChjYWNoZXMubWF0Y2goZS5yZXF1ZXN0KS50aGVuKChoaXQpID0+IGhpdCB8fCBmZXRjaChlLnJlcXVlc3QpLnRoZW4oKHJlcykgPT4gewogICAgICBjb25zdCBjb3B5ID0gcmVzLmNsb25lKCk7CiAgICAgIGNhY2hlcy5vcGVuKENBQ0hFKS50aGVuKChjKSA9PiBjLnB1dChlLnJlcXVlc3QsIGNvcHkpKTsKICAgICAgcmV0dXJuIHJlczsKICAgIH0pLmNhdGNoKCgpID0+IGNhY2hlcy5tYXRjaCgiLi9pbmRleC5odG1sIikpKSk7CiAgfQp9KTsK
+/* Musicfy service worker — caches the app shell for offline use.
+   API calls (iTunes, archive.org, LRCLIB) and audio streams always go to the network. */
+const CACHE = "musicfy-shell-v1";
+const SHELL = ["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest",
+  "./icons/icon.svg"];
+
+self.addEventListener("install", (e) => {
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+self.addEventListener("activate", (e) => {
+  e.waitUntil(caches.keys().then((keys) =>
+    Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));
+});
+self.addEventListener("fetch", (e) => {
+  const url = new URL(e.request.url);
+  if (e.request.method !== "GET") return;
+  // App shell: cache-first. Everything else (APIs, artwork, audio): network, no caching.
+  if (url.origin === location.origin) {
+    e.respondWith(caches.match(e.request).then((hit) => hit || fetch(e.request).then((res) => {
+      const copy = res.clone();
+      caches.open(CACHE).then((c) => c.put(e.request, copy));
+      return res;
+    }).catch(() => caches.match("./index.html"))));
+  }
+});
